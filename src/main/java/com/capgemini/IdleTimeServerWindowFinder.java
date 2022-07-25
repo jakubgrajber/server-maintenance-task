@@ -19,7 +19,7 @@ public class IdleTimeServerWindowFinder {
     public int getMaintenanceWindowStart(List<TimeRange> busyTimeRanges, short windowDuration) {
         busyTimeRanges.sort(Comparator.reverseOrder());
         reduceOverlaps(busyTimeRanges);
-        busyTimeRanges.sort(TimeRange::compareTo);
+        busyTimeRanges.sort((Comparator.comparingInt(TimeRange::getFrom)));
         findFirsValidIdleWindow(new TimeRange(BEGINNING_OF_THE_DAY, END_OF_THE_DAY), busyTimeRanges, windowDuration);
         return start;
     }

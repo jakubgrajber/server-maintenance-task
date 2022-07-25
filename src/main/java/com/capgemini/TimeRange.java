@@ -55,6 +55,6 @@ public class TimeRange implements Comparable<TimeRange>{
 
     @Override
     public int compareTo(TimeRange that) {
-        return this.getFrom()- that.getFrom();
+        return this.getDuration()- that.getDuration();
     }
 }
