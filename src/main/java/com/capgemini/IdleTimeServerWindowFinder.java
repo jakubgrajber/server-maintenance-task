@@ -18,9 +18,7 @@ public class IdleTimeServerWindowFinder {
 
     public int getMaintenanceWindowStart(List<TimeRange> busyTimeRanges, short windowDuration) {
         busyTimeRanges.sort(Comparator.reverseOrder());
-        System.out.println(busyTimeRanges);
         reduceOverlaps(busyTimeRanges);
-        System.out.println(busyTimeRanges);
         findFirsValidIdleWindow(new TimeRange(BEGINNING_OF_THE_DAY, END_OF_THE_DAY), busyTimeRanges, windowDuration);
         return start;
     }
@@ -70,7 +68,6 @@ public class IdleTimeServerWindowFinder {
                 }
                 else position++;
             }
-            System.out.println(busyTimeRanges);
         }
         return busyTimeRanges;
     }
