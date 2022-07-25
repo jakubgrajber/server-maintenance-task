@@ -1,6 +1,6 @@
 package com.capgemini;
 
-public class TimeRange {
+public class TimeRange implements Comparable<TimeRange>{
 
     private static final int SPACE_ASCII_VALUE = 32;
 
@@ -51,5 +51,10 @@ public class TimeRange {
                 "from=" + from +
                 ", to=" + to +
                 '}';
+    }
+
+    @Override
+    public int compareTo(TimeRange that) {
+        return this.getDuration()- that.getDuration();
     }
 }

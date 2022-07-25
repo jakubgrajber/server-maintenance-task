@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
@@ -33,7 +34,7 @@ public class ServerMaintenanceManagerApp {
             e.printStackTrace();
         }
 
-        List<TimeRange> timeRanges = timeRangesStrings.stream().map(TimeRange::parseTimeRange).toList();
+        List<TimeRange> timeRanges = timeRangesStrings.stream().map(TimeRange::parseTimeRange).collect(Collectors.toCollection(ArrayList::new));
 
         timeRanges.forEach(System.out::println);
 
