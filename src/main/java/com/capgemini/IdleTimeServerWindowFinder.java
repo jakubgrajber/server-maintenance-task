@@ -1,9 +1,7 @@
 package com.capgemini;
 
 import java.sql.Time;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class IdleTimeServerWindowFinder {
 
@@ -17,10 +15,11 @@ public class IdleTimeServerWindowFinder {
     private static int start = -1;
 
     public int getMaintenanceWindowStart(List<TimeRange> busyTimeRanges, short windowDuration) {
-        busyTimeRanges.sort(Comparator.reverseOrder());
-        reduceOverlaps(busyTimeRanges);
-        busyTimeRanges.sort((Comparator.comparingInt(TimeRange::getFrom)));
-        findFirsValidIdleWindow(new TimeRange(BEGINNING_OF_THE_DAY, END_OF_THE_DAY), busyTimeRanges, windowDuration);
+        ArrayList<TimeRange> timeRanges = new ArrayList<>(busyTimeRanges);
+        timeRanges.sort(Comparator.reverseOrder());
+        reduceOverlaps(timeRanges);
+        timeRanges.sort((Comparator.comparingInt(TimeRange::getFrom)));
+        findFirsValidIdleWindow(new TimeRange(BEGINNING_OF_THE_DAY, END_OF_THE_DAY), timeRanges, windowDuration);
         return start;
     }
 
